@@ -1,4 +1,4 @@
-package ru.justd.fundaassignment
+package ru.justd.bux
 
 import com.google.gson.Gson
 import dagger.Module
@@ -8,7 +8,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.justd.bux.BuildConfig
 import ru.justd.bux.model.ApiService
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton

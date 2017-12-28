@@ -2,7 +2,7 @@ package ru.justd.bux.model
 
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
+import ru.justd.bux.product.model.Product
 import rx.Single
 
 /**
@@ -10,17 +10,12 @@ import rx.Single
  */
 interface ApiService {
 
-//    @GET("feeds/Aanbod.svc/json/{key}")
-//    fun fetch(
-//            @Path("key") key: String,
-//            @Query("type") type: String,
-//            @Query("zo") searchQuery: String,
-//            @Query("page") page: Int,
-//            @Query("pageSize") pageSize: Int
-//    ): Single<ApiResponse<Makelaar>>
-
     @GET("core/16/products/{productId}")
     fun getProduct(
-        @Path("productId") productId: String
+            @Path("productId") productId: String
     )
+
+    @GET("core/16/products")
+    fun getListProducts(): Single<List<Product>>
+
 }
