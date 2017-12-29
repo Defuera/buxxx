@@ -5,7 +5,7 @@ import ru.justd.bux.search.view.SearchActivity
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [(ApiModule::class)])
+@Component(modules = [BuxModule::class, ApiModule::class])
 interface BuxComponent {
     fun inject(mainActivity: SearchActivity)
 }

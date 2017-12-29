@@ -25,9 +25,9 @@ task clean(type: Delete) {
 }
 
 ext {
-    supportVersion = '26.0.2'
+    supportVersion = '26.1.0'
     daggerVersion = '2.6'
     retrofitVersion = '2.1.0'
     okHttpVersion = '3.4.1'
-    butterknifeVersion = '8.2.1'
+    butterknifeVersion = '8.6.0'
 }

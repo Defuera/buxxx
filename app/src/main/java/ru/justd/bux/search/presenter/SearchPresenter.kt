@@ -1,6 +1,5 @@
 package ru.justd.bux.search.presenter
 
-import android.util.Log
 import ru.justd.arkitec.presenter.BasePresenter
 import ru.justd.bux.search.model.SearchInteractor
 import ru.justd.bux.search.view.SearchView
@@ -12,11 +11,13 @@ class SearchPresenter @Inject constructor(
 ) : BasePresenter<SearchView>() {
 
     override fun onViewAttached() {
+
         subscribe(
                 interactor.getListProducts(),
-                Action1 { product -> Log.i("DensTest", "$product"); },
+                Action1 { products -> view().setHints(products) },
                 Action1 { e -> e.printStackTrace() }
         )
+
     }
 
 }
