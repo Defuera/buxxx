@@ -48,7 +48,7 @@ dependencies {
     compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
     // UI stuff
-    compile 'com.github.m039:el-adapter:413722f663084c5b930cca19bbccc6e851594225'
+    compile 'com.github.Defuera:duper-adapter:60a36a2d4ec64a58d16f9b1bd84fff1ae304502f'
     compile 'com.github.Defuera:lilwidgets:0.13'
 }
 

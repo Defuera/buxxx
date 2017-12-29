@@ -29,7 +29,6 @@ class ProductDataSource @Inject constructor(
                                 override fun onOpen(webSocket: WebSocket, response: Response) {
                                     //connect to ticker channel
                                     webSocket.send("""{"subscribeTo":["trading.product.$productId"]}""")
-                                    Log.i("DensTest", "onOpen: ");
                                 }
 
                                 override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {

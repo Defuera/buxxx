@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".search.view.SearchActivity">
+        <activity android:name=".search.view.ProductsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
