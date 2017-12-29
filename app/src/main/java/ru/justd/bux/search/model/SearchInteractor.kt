@@ -8,6 +8,9 @@ import javax.inject.Inject
 class SearchInteractor @Inject constructor(
         private val productDataSource: ProductDataSource
 ) {
+
     fun getListProducts(): Single<List<Product>> = productDataSource.getListProducts()
+
+    fun  getProduct(productId: String): Single<Product> = productDataSource.getProduct(productId)
 
 }

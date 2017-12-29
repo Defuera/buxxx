@@ -14,7 +14,7 @@ class SearchPresenter @Inject constructor(
     override fun onViewAttached() {
         subscribe(
                 interactor.getListProducts(),
-                Action1 { products -> products.forEach { Log.i("DensTest", "$products"); } },
+                Action1 { product -> Log.i("DensTest", "$product"); },
                 Action1 { e -> e.printStackTrace() }
         )
     }

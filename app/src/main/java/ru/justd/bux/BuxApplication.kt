@@ -15,4 +15,5 @@ class BuxApplication : Application() {
                 .builder()
                 .build()
     }
+
 }

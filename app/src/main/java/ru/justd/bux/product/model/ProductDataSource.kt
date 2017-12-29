@@ -8,4 +8,6 @@ class ProductDataSource @Inject constructor(private val apiService: ApiService) 
 
     fun getListProducts(): Single<List<Product>> = apiService.getListProducts()
 
+    fun getProduct(productId: String): Single<Product> = apiService.getProduct(productId)
+
 }
