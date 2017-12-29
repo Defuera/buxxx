@@ -56,7 +56,7 @@ class SearchActivity : BaseActivity<SearchPresenter, SearchView>(), SearchView {
 
     @OnClick(R.id.submit)
     fun onSubmitClicked() {
-        router.showDetailedProduct(this, input.text.toString())
+        router.showDetailedProduct(this, "sb26992")
     }
 
 }

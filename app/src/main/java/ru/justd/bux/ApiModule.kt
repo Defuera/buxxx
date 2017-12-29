@@ -47,19 +47,14 @@ class ApiModule {
 
     @Provides
     @Singleton
-    internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit.Builder {
+    internal fun provideApiService(okHttpClient: OkHttpClient): ApiService {
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpClient)
-    }
-
-    @Provides
-    @Singleton
-    internal fun provideApiService(builder: Retrofit.Builder): ApiService {
-        return builder
                 .baseUrl(BuildConfig.HOST)
                 .build()
                 .create(ApiService::class.java)
     }
+
 }
