@@ -10,9 +10,9 @@ import butterknife.ButterKnife
 import ru.justd.bux.R
 import ru.justd.bux.product.model.Product
 
-class ProductWidget(context: Context) : FrameLayout(context) {
+class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
-    constructor(context : Context, attributeSet: AttributeSet) : this(context)
+    constructor(context: Context) : this(context, null)
 
     @BindView(R.id.name)
     lateinit var name: TextView
@@ -22,12 +22,10 @@ class ProductWidget(context: Context) : FrameLayout(context) {
 
     init {
         View.inflate(context, R.layout.widget_product_item, this)
-        ButterKnife.bind(this)
+        ButterKnife.bind(this, this)
     }
 
     fun bind(product: Product) {
-        View.inflate(context, R.layout.widget_product_item, this)
-        ButterKnife.bind(this)
         name.text = product.displayName
         val currentPrice = product.currentPrice
         price.text = "${currentPrice.amount} ${currentPrice.currency}"

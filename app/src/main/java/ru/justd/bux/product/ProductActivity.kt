@@ -3,7 +3,6 @@ package ru.justd.bux.product
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import ru.justd.arkitec.view.BaseActivity
@@ -12,6 +11,7 @@ import ru.justd.bux.app.di.BuxApplication
 import ru.justd.bux.product.model.Product
 import ru.justd.bux.product.presenter.ProductPresenter
 import ru.justd.bux.product.view.ProductView
+import ru.justd.bux.productslist.view.ProductWidget
 import javax.inject.Inject
 
 //    In a second screen, show the data of the Product with the provided Identifier.
@@ -31,11 +31,8 @@ class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductVi
 
     }
 
-    @BindView(R.id.name)
-    lateinit var name: TextView
-
-    @BindView(R.id.price)
-    lateinit var price: TextView
+    @BindView(R.id.product_widget)
+    lateinit var productWidget: ProductWidget
 
     @Inject
     lateinit var presenter: ProductPresenter
@@ -57,9 +54,7 @@ class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductVi
                     ?: throw IllegalArgumentException("ProductActivity must be started via static method providing productId")
 
     override fun showData(product: Product) {
-//        productWidget.bind(product)
-        name.text = product.displayName
-        price.text = product.currentPrice.amount.toString()
+        productWidget.bind(product)
     }
 
     override fun showError(throwable: Throwable) {
