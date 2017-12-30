@@ -3,6 +3,9 @@ package ru.justd.bux.search.view
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import butterknife.BindView
 import butterknife.ButterKnife
 import ru.justd.arkitec.view.BaseActivity
@@ -40,10 +43,15 @@ class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListVie
 
         adapter
                 .addViewType<Product, ProductWidget>(Product::class.java)
-                .addViewCreator { viewGroup -> ProductWidget(viewGroup.context) }
+                .addViewCreator { viewGroup ->
+                    val productWidget = ProductWidget(viewGroup.context)
+                    productWidget.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+                    productWidget
+                }
                 .addViewBinder { widget, item -> widget.bind(item) }
                 .addClickListener { _, item -> router.showDetailedProduct(this, item.securityId) }
                 .commit()
+
         recycler.adapter = adapter
     }
 
