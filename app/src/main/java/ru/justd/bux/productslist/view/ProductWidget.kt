@@ -9,6 +9,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import ru.justd.bux.R
 import ru.justd.bux.product.model.Product
+import java.math.BigDecimal
 
 class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
@@ -20,6 +21,9 @@ class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(contex
     @BindView(R.id.price)
     lateinit var price: TextView
 
+    @BindView(R.id.trend)
+    lateinit var trend: TextView
+
     init {
         View.inflate(context, R.layout.widget_product_item, this)
         ButterKnife.bind(this, this)
@@ -28,7 +32,12 @@ class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(contex
     fun bind(product: Product) {
         name.text = product.displayName
         val currentPrice = product.currentPrice
-        price.text = "${currentPrice.amount} ${currentPrice.currency}"
+        val currentPriceAmount = currentPrice.amount
+        price.text = "$currentPriceAmount ${currentPrice.currency}"
+        trend.text = "${round(currentPriceAmount / product.closingPrice.amount - 1)}%"
     }
+
+    private fun round(num: Double) =
+            BigDecimal(num).setScale(2, BigDecimal.ROUND_HALF_DOWN).toDouble()
 
 }

@@ -3,6 +3,7 @@ package ru.justd.bux.product
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import ru.justd.arkitec.view.BaseActivity
@@ -34,6 +35,12 @@ class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductVi
     @BindView(R.id.product_widget)
     lateinit var productWidget: ProductWidget
 
+    @BindView(R.id.today_high)
+    lateinit var todayHigh: TextView
+
+    @BindView(R.id.today_low)
+    lateinit var todayLow: TextView
+
     @Inject
     lateinit var presenter: ProductPresenter
 
@@ -55,6 +62,9 @@ class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductVi
 
     override fun showData(product: Product) {
         productWidget.bind(product)
+        val dayRange = product.dayRange
+        todayHigh.text = "${dayRange.high} ${dayRange.currency}"
+        todayLow.text = "${dayRange.low} ${dayRange.currency}"
     }
 
     override fun showError(throwable: Throwable) {
