@@ -1,4 +1,4 @@
-package ru.justd.bux.model
+package ru.justd.bux.app.model
 
 import retrofit2.http.GET
 import retrofit2.http.Path

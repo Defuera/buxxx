@@ -1,4 +1,4 @@
-package ru.justd.bux.search.view
+package ru.justd.bux.productslist.view
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -9,11 +9,11 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import butterknife.BindView
 import butterknife.ButterKnife
 import ru.justd.arkitec.view.BaseActivity
-import ru.justd.bux.BuxApplication
+import ru.justd.bux.app.di.BuxApplication
 import ru.justd.bux.R
-import ru.justd.bux.Router
+import ru.justd.bux.app.Router
 import ru.justd.bux.product.model.Product
-import ru.justd.bux.search.presenter.ProductsListPresenter
+import ru.justd.bux.productslist.presenter.ProductsListPresenter
 import ru.justd.duperadapter.ArrayListDuperAdapter
 import javax.inject.Inject
 

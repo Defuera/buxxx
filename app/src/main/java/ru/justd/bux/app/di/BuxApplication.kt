@@ -1,4 +1,4 @@
-package ru.justd.bux
+package ru.justd.bux.app.di
 
 import android.app.Application
 

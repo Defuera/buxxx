@@ -2,13 +2,13 @@ package ru.justd.bux.product.model
 
 import android.util.Log
 import okhttp3.*
-import ru.justd.bux.model.ApiService
+import ru.justd.bux.app.model.ApiService
 import rx.Emitter
 import rx.Observable
 import rx.Single
 import javax.inject.Inject
 
-class ProductDataSource @Inject constructor(
+class RemoteProductDataSource @Inject constructor(
         private val apiService: ApiService,
         private val okHttpClient: OkHttpClient
 ) {

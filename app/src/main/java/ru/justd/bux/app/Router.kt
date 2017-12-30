@@ -1,4 +1,4 @@
-package ru.justd.bux
+package ru.justd.bux.app
 
 import android.content.Context
 import ru.justd.bux.product.ProductActivity

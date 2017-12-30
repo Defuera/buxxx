@@ -1,4 +1,4 @@
-package ru.justd.bux.search.view
+package ru.justd.bux.productslist.view
 
 import ru.justd.bux.product.model.Product
 

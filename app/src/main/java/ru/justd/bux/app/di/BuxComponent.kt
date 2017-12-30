@@ -1,8 +1,8 @@
-package ru.justd.bux
+package ru.justd.bux.app.di
 
 import dagger.Component
 import ru.justd.bux.product.ProductActivity
-import ru.justd.bux.search.view.ProductsListActivity
+import ru.justd.bux.productslist.view.ProductsListActivity
 import javax.inject.Singleton
 
 @Singleton
