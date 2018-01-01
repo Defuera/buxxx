@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/name"
-        style="@style/TextAppearance.AppCompat.Headline"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

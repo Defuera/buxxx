@@ -11,6 +11,8 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.justd.bux.BuildConfig
 import ru.justd.bux.app.model.ApiService
+import ru.justd.bux.app.model.WebsocketApi
+import ru.justd.bux.app.model.WebsocketApiImpl
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -57,5 +59,9 @@ class ApiModule {
                 .build()
                 .create(ApiService::class.java)
     }
+
+    @Provides
+    @Singleton
+    internal fun provideWebsocketApi(okHttpClient: OkHttpClient): WebsocketApi = WebsocketApiImpl(okHttpClient)
 
 }

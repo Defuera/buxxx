@@ -24,17 +24,22 @@ class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(contex
     @BindView(R.id.trend)
     lateinit var trend: TextView
 
+    lateinit var product: Product
+
     init {
         View.inflate(context, R.layout.widget_product_item, this)
         ButterKnife.bind(this, this)
     }
 
     fun bind(product: Product) {
+        this.product = product
         name.text = product.displayName
-        val currentPrice = product.currentPrice
-        val currentPriceAmount = currentPrice.amount
-        price.text = "$currentPriceAmount ${currentPrice.currency}"
-        trend.text = "${round(currentPriceAmount / product.closingPrice.amount - 1)}%"
+        updatePrice(product.currentPrice.amount)
+    }
+
+    fun updatePrice(price: Double) {
+        this.price.text = "$price ${product.currentPrice.currency}"
+        trend.text = "${round(price / product.closingPrice.amount - 1)}%"
     }
 
     private fun round(num: Double) =

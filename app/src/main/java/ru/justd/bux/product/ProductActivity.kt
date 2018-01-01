@@ -9,6 +9,7 @@ import butterknife.ButterKnife
 import ru.justd.arkitec.view.BaseActivity
 import ru.justd.bux.R
 import ru.justd.bux.app.di.BuxApplication
+import ru.justd.bux.app.model.TradingQuote
 import ru.justd.bux.product.model.Product
 import ru.justd.bux.product.presenter.ProductPresenter
 import ru.justd.bux.product.view.ProductView
@@ -68,7 +69,11 @@ class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductVi
     }
 
     override fun showError(throwable: Throwable) {
+        //todo
+    }
 
+    override fun updatePrice(quote: TradingQuote) {
+        productWidget.updatePrice(quote.currentPrice)
     }
 
     //endregion

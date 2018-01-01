@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class ProductPresenter @Inject constructor(
         private val interactor: ProductInteractor
-): BasePresenter<ProductView>() {
+) : BasePresenter<ProductView>() {
 
     override fun onViewAttached() {
         subscribe(
@@ -23,9 +23,11 @@ class ProductPresenter @Inject constructor(
     }
 
     private fun observeProductUpdates(product: Product) {
-        //        subscribe(
-//                interactor.observeProduct(view().getProductId())
-//        )
+        subscribe(
+                interactor.observeProduct(product.securityId),
+                onNext = Action1 { quote -> view().updatePrice(quote) },
+                onError = Action1 { throwable -> throwable.printStackTrace() }
+        )
     }
 
 }

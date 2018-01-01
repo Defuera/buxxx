@@ -1,14 +1,18 @@
 package ru.justd.bux.productslist.model
 
 import android.util.Log
+import ru.justd.bux.app.model.TradingQuote
+import ru.justd.bux.app.model.WebsocketApi
 import ru.justd.bux.product.model.Product
 import ru.justd.bux.product.model.RemoteProductDataSource
+import rx.Observable
 import rx.Single
 import javax.inject.Inject
 
 class ProductsRepository @Inject constructor(
         private val remoteProductDataSource: RemoteProductDataSource,
-        private val inMemoryProductDataSource: InMemoryProductDataSource
+        private val inMemoryProductDataSource: InMemoryProductDataSource,
+        private val websocketApi: WebsocketApi
 ) {
 
     fun getListProducts(): Single<List<Product>> {
@@ -38,5 +42,7 @@ class ProductsRepository @Inject constructor(
                     }
                 }
     }
+
+    fun observeProduct(productId: String) : Observable<TradingQuote> = websocketApi.observeProduct(productId)
 
 }

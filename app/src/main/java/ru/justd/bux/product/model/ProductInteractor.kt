@@ -9,7 +9,7 @@ class ProductInteractor @Inject constructor(
 
     fun getProduct(productId: String) = repository.getProduct(productId)
 
-//    fun observeProduct(productId: String) = repository.observeProduct(productId)
+    fun observeProduct(productId: String) = repository.observeProduct(productId)
 
 
 }
