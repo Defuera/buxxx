@@ -10,4 +10,5 @@ import javax.inject.Singleton
 interface BuxComponent {
     fun inject(mainActivity: ProductsListActivity)
     fun inject(mainActivity: ProductActivity)
+    fun inject(application: BuxApplication)
 }

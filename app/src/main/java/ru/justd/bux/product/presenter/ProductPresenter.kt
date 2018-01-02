@@ -1,7 +1,6 @@
 package ru.justd.bux.product.presenter
 
 import ru.justd.arkitec.presenter.BasePresenter
-import ru.justd.bux.product.model.Product
 import ru.justd.bux.product.model.ProductInteractor
 import ru.justd.bux.product.view.ProductView
 import rx.functions.Action1
@@ -16,18 +15,23 @@ class ProductPresenter @Inject constructor(
                 interactor.getProduct(view().getProductId()),
                 onSuccess = Action1 { product ->
                     view().showData(product)
-                    observeProductUpdates(product)
+                    subscribeToUpdates(product.securityId)
                 },
                 onError = Action1 { throwable -> view().showError(throwable) }
         )
     }
 
-    private fun observeProductUpdates(product: Product) {
+    private fun subscribeToUpdates(productId: String) {
         subscribe(
-                interactor.observeProduct(product.securityId),
+                interactor.subscribeToUpdates(productId),
                 onNext = Action1 { quote -> view().updatePrice(quote) },
                 onError = Action1 { throwable -> throwable.printStackTrace() }
         )
+    }
+
+    override fun detachView() {
+        interactor.unsubscribeFromUpdates(view().getProductId())
+        super.detachView()
     }
 
 }

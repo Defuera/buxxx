@@ -1,5 +1,6 @@
 package ru.justd.arkitec.presenter
 
+import android.support.annotation.CallSuper
 import rx.Completable
 import rx.Observable
 import rx.Single
@@ -10,20 +11,19 @@ import rx.functions.Action1
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 
-/**
- * Created by defuera on 01/02/2017.
- */
 abstract class BasePresenter<V> {
 
     private var view: V? = null
     private val subscriptions = CompositeSubscription()
 
-    fun attachView(view: V) {
+    @CallSuper
+    open fun attachView(view: V) {
         this.view = view
         onViewAttached()
     }
 
-    fun detachView() {
+    @CallSuper
+    open fun detachView() {
         this.view = null
         subscriptions.clear()
         onViewDetached()
