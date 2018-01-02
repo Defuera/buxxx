@@ -3,4 +3,7 @@
     <string name="product_input_hint">Start typing product name</string>
     <string name="submit">submit</string>
     <string name="closing_price">Closing price</string>
+
+    <string name="loading">Loading</string>
+    <string name="network_error">Network error, try again</string>
 </resources>

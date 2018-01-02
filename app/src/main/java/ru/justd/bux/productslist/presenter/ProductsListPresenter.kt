@@ -11,10 +11,15 @@ class ProductsListPresenter @Inject constructor(
 ) : BasePresenter<ProductsListView>() {
 
     override fun onViewAttached() {
+        loadData()
+    }
+
+    fun loadData() {
+        view().showLoading()
         subscribe(
                 interactor.getListProducts(),
                 Action1 { products -> view().showData(products) },
-                Action1 { e -> e.printStackTrace() }
+                Action1 { _ -> view().showNetworkError() }
         )
     }
 

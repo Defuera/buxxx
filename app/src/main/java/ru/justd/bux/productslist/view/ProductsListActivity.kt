@@ -3,6 +3,7 @@ package ru.justd.bux.productslist.view
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -15,6 +16,7 @@ import ru.justd.bux.app.Router
 import ru.justd.bux.product.model.Product
 import ru.justd.bux.productslist.presenter.ProductsListPresenter
 import ru.justd.duperadapter.ArrayListDuperAdapter
+import ru.justd.lilwidgets.LilLoaderWidget
 import javax.inject.Inject
 
 class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListView>(), ProductsListView {
@@ -27,6 +29,9 @@ class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListVie
 
     @BindView(R.id.recycler)
     lateinit var recycler: RecyclerView
+
+    @BindView(R.id.loader)
+    lateinit var loader: LilLoaderWidget
 
     private val adapter = ArrayListDuperAdapter()
 
@@ -58,9 +63,18 @@ class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListVie
 
     //region ProductsListView
 
+    override fun showLoading() {
+        recycler.visibility = View.INVISIBLE
+        loader.showLoading()
+    }
     override fun showData(products: List<Product>) {
         adapter.addAll(products)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun showNetworkError() {
+        loader.showNetworkError()
+        loader.setOnErrorClicked { presenter.loadData() }
     }
 
     //endregion

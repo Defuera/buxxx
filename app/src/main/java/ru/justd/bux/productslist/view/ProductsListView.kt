@@ -4,6 +4,10 @@ import ru.justd.bux.product.model.Product
 
 interface ProductsListView {
 
+    fun showLoading()
+
     fun showData(products: List<Product>)
+
+    fun showNetworkError()
 
 }
