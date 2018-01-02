@@ -10,6 +10,4 @@ class ProductsListInteractor @Inject constructor(
 
     fun getListProducts(): Single<List<Product>> = repository.getListProducts()
 
-    fun  getProduct(productId: String): Single<Product> = repository.getProduct(productId)
-
 }

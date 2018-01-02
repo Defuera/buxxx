@@ -16,10 +16,9 @@ import ru.justd.bux.product.view.ProductView
 import ru.justd.bux.productslist.view.ProductWidget
 import javax.inject.Inject
 
-//    In a second screen, show the data of the Product with the provided Identifier.
-//    To show current price of the Product, please take into account the right decimal digits and locale-aware currency formatting.
-//    Besides the value of the previous day closing price, please also show the difference of the previous day closing price to the
-//    current price, in %. (e.g. if previous day = $100,00 and current = $150,00, the % difference will be 50%).
+/**
+ * Detailed product view with live time price updates
+ */
 class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductView {
 
     companion object {
@@ -36,11 +35,8 @@ class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductVi
     @BindView(R.id.product_widget)
     lateinit var productWidget: ProductWidget
 
-    @BindView(R.id.today_high)
-    lateinit var todayHigh: TextView
-
-    @BindView(R.id.today_low)
-    lateinit var todayLow: TextView
+    @BindView(R.id.closing_price)
+    lateinit var closingPrice: TextView
 
     @Inject
     lateinit var presenter: ProductPresenter
@@ -62,10 +58,11 @@ class ProductActivity : BaseActivity<ProductPresenter, ProductView>(), ProductVi
                     ?: throw IllegalArgumentException("ProductActivity must be started via static method providing productId")
 
     override fun showData(product: Product) {
+        title = product.symbol
+
         productWidget.bind(product)
-        val dayRange = product.dayRange
-        todayHigh.text = "${dayRange.high} ${dayRange.currency}"
-        todayLow.text = "${dayRange.low} ${dayRange.currency}"
+        val price = product.closingPrice
+        closingPrice.text = "${price.amount} ${price.currency}"
     }
 
     override fun showError(throwable: Throwable) {

@@ -20,33 +20,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/today_high" />
+            android:text="@string/closing_price" />
 
         <TextView
-            android:id="@+id/today_high"
+            android:id="@+id/closing_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="100" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/padding_16">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/today_low" />
-
-        <TextView
-            android:id="@+id/today_low"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="12" />
 
     </LinearLayout>
 

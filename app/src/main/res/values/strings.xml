@@ -2,6 +2,5 @@
     <string name="app_name">Bux</string>
     <string name="product_input_hint">Start typing product name</string>
     <string name="submit">submit</string>
-    <string name="today_high">Today hight</string>
-    <string name="today_low">Today low</string>
+    <string name="closing_price">Closing price</string>
 </resources>
