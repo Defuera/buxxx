@@ -1,6 +1,5 @@
 package ru.justd.bux.app.model
 
-import android.os.Handler
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -39,7 +38,7 @@ class WebsocketApiImpl constructor(
                                     }
                                 },
                                 DELAY_RECONNECT
-                        ) //yeah, it would be nice to check if there's network availavle before actually tryint to reconnect
+                        ) //yeah, it would be nice to check if there's network available before actually trying to reconnect
                     }
 
                     override fun onMessage(webSocket: WebSocket?, text: String) {
