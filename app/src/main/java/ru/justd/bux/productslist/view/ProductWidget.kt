@@ -2,6 +2,7 @@ package ru.justd.bux.productslist.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -10,6 +11,8 @@ import butterknife.ButterKnife
 import ru.justd.bux.R
 import ru.justd.bux.product.model.Product
 import java.math.BigDecimal
+
+private const val TREND_DECIMAL_PLACES = 2
 
 class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
@@ -38,11 +41,13 @@ class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(contex
     }
 
     fun updatePrice(price: Double) {
-        this.price.text = "$price ${product.currentPrice.currency}"
-        trend.text = "${round(price / product.closingPrice.amount - 1)}%"
+        val currentPrice = product.currentPrice
+        Log.v("DensTest", "decimals: ${currentPrice.decimals}")
+        this.price.text = "${round(currentPrice.decimals, price)} ${currentPrice.currency}"
+        trend.text = "${round(TREND_DECIMAL_PLACES, price / product.closingPrice.amount - 1)}%"
     }
 
-    private fun round(num: Double) =
-            BigDecimal(num).setScale(2, BigDecimal.ROUND_HALF_DOWN).toDouble()
+    private fun round(decimalPlaces: Int, num: Double) =
+            BigDecimal(num).setScale(decimalPlaces, BigDecimal.ROUND_HALF_DOWN).toDouble()
 
 }

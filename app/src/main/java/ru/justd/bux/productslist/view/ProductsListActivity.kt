@@ -76,6 +76,7 @@ class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListVie
         recycler.visibility = View.VISIBLE
 
         adapter.addAll(products)
+        adapter.notifyDataSetChanged()
     }
 
     override fun showError(error: Throwable) {
