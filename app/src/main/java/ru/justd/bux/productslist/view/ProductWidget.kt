@@ -2,10 +2,10 @@ package ru.justd.bux.productslist.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import butterknife.BindColor
 import butterknife.BindView
 import butterknife.ButterKnife
 import ru.justd.bux.R
@@ -27,6 +27,18 @@ class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(contex
     @BindView(R.id.trend)
     lateinit var trend: TextView
 
+    @BindColor(R.color.trend_up)
+    @JvmField
+    var trendUpColor: Int = 0
+
+    @BindColor(R.color.trend_down)
+    @JvmField
+    var trendDownColor: Int = 0
+
+    @BindColor(R.color.black)
+    @JvmField
+    var neutralColor: Int = 0
+
     lateinit var product: Product
 
     init {
@@ -42,9 +54,17 @@ class ProductWidget(context: Context, attrs: AttributeSet?) : FrameLayout(contex
 
     fun updatePrice(price: Double) {
         val currentPrice = product.currentPrice
-        Log.v("DensTest", "decimals: ${currentPrice.decimals}")
         this.price.text = "${round(currentPrice.decimals, price)} ${currentPrice.currency}"
-        trend.text = "${round(TREND_DECIMAL_PLACES, price / product.closingPrice.amount - 1)}%"
+        val trendPercent = round(TREND_DECIMAL_PLACES, price / product.closingPrice.amount - 1)
+
+        trend.setTextColor(
+                when {
+                    trendPercent > 0 -> trendUpColor
+                    trendPercent < 0 -> trendDownColor
+                    else -> neutralColor
+                }
+        )
+        trend.text = "$trendPercent%"
     }
 
     private fun round(decimalPlaces: Int, num: Double) =
