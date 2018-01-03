@@ -8,6 +8,6 @@ interface ProductsListView {
 
     fun showData(products: List<Product>)
 
-    fun showNetworkError()
+    fun showError(error: Throwable)
 
 }

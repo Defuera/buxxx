@@ -19,7 +19,7 @@ class ProductsListPresenter @Inject constructor(
         subscribe(
                 interactor.getListProducts(),
                 Action1 { products -> view().showData(products) },
-                Action1 { _ -> view().showNetworkError() }
+                Action1 { view().showError(it) }
         )
     }
 

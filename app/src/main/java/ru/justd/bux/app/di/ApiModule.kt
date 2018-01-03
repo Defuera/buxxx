@@ -21,7 +21,7 @@ import javax.inject.Singleton
 class ApiModule {
 
     companion object {
-        const val HEADER_BEARER = "Authorization"
+        const val HEADER_BEARER = "Authorizateeion"
         const val HEADER_ACCEPT = "Accept"
         const val HEADER_ACCEPT_LANGUAGE = "Accept-Language"
     }

@@ -10,9 +10,12 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import butterknife.BindView
 import butterknife.ButterKnife
 import ru.justd.arkitec.view.BaseActivity
-import ru.justd.bux.app.di.BuxApplication
 import ru.justd.bux.R
 import ru.justd.bux.app.Router
+import ru.justd.bux.app.di.BuxApplication
+import ru.justd.bux.app.model.NetworkError
+import ru.justd.bux.app.model.ServerError
+import ru.justd.bux.app.view.SimpleError
 import ru.justd.bux.product.model.Product
 import ru.justd.bux.productslist.presenter.ProductsListPresenter
 import ru.justd.duperadapter.ArrayListDuperAdapter
@@ -67,14 +70,20 @@ class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListVie
         recycler.visibility = View.INVISIBLE
         loader.showLoading()
     }
+
     override fun showData(products: List<Product>) {
         adapter.addAll(products)
         adapter.notifyDataSetChanged()
     }
 
-    override fun showNetworkError() {
-        loader.showNetworkError()
-        loader.setOnErrorClicked { presenter.loadData() }
+    override fun showError(error: Throwable) {
+        when (error) {
+            is NetworkError -> {
+                loader.showNetworkError()
+                loader.setOnErrorClicked { presenter.loadData() }
+            }
+            is ServerError -> loader.showError(SimpleError(error.message ?: getString(R.string.unexpected_error)))
+        }
     }
 
     //endregion
