@@ -42,7 +42,7 @@ class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListVie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_products_list)
         ButterKnife.bind(this)
 
         BuxApplication.component.inject(this)

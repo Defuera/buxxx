@@ -11,6 +11,11 @@ class ProductPresenter @Inject constructor(
 ) : BasePresenter<ProductView>() {
 
     override fun onViewAttached() {
+        loadData()
+    }
+
+    fun loadData() {
+        view().showLoading()
         subscribe(
                 interactor.getProduct(view().getProductId()),
                 onSuccess = Action1 { product ->

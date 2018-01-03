@@ -9,8 +9,10 @@ interface ProductView {
 
     fun showData(product: Product)
 
-    fun showError(throwable: Throwable)
+    fun showError(error: Throwable)
 
     fun updatePrice(quote: TradingQuote)
+
+    fun showLoading()
 
 }
