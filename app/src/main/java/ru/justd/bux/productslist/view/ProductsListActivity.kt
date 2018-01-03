@@ -72,8 +72,10 @@ class ProductsListActivity : BaseActivity<ProductsListPresenter, ProductsListVie
     }
 
     override fun showData(products: List<Product>) {
+        loader.hide()
+        recycler.visibility = View.VISIBLE
+
         adapter.addAll(products)
-        adapter.notifyDataSetChanged()
     }
 
     override fun showError(error: Throwable) {
